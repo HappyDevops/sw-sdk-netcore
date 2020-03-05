@@ -1,8 +1,6 @@
 ﻿using System;
 using SW.Helpers;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 
 namespace SW.Services.AcceptReject
 {
@@ -25,9 +23,9 @@ namespace SW.Services.AcceptReject
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var content = this.RequestAcceptReject(cer, key, rfc, password, uuids);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                var content = RequestAcceptReject(cer, key, rfc, password, uuids);
+                return handler.GetPostResponse(Url,
                                 "acceptreject/csd", headers, content, proxy);
             }
             catch (Exception e)
@@ -42,9 +40,9 @@ namespace SW.Services.AcceptReject
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var content = this.RequestAcceptReject(xmlCancelation, enumAcceptReject);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                var content = RequestAcceptReject(xmlCancelation, enumAcceptReject);
+                return handler.GetPostResponse(Url,
                                 "acceptreject/xml", headers, content, proxy);
             }
             catch (Exception e)
@@ -59,9 +57,9 @@ namespace SW.Services.AcceptReject
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                var content = this.RequestAcceptReject(pfx, rfc, password, uuid);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                var content = RequestAcceptReject(pfx, rfc, password, uuid);
+                return handler.GetPostResponse(Url,
                                 "acceptreject/pfx", headers, content, proxy);
             }
             catch (Exception e)
@@ -75,13 +73,13 @@ namespace SW.Services.AcceptReject
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestAcceptReject(rfc, uuid, enumAcceptReject);
+                HttpWebRequest request = RequestAcceptReject(rfc, uuid, enumAcceptReject);
                 request.ContentType = "application/json";
                 request.ContentLength = 0;
                 request.Method = WebRequestMethods.Http.Post;
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url, headers, $"acceptreject/{rfc}/{uuid}/{enumAcceptReject.ToString()}", proxy);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url, headers, $"acceptreject/{rfc}/{uuid}/{enumAcceptReject.ToString()}", proxy);
             }
             catch (Exception e)
             {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
-using SW.Services.Cancelation;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SW.Helpers;
 using Test_SW.Helpers;
 using SW.Services.AcceptReject;

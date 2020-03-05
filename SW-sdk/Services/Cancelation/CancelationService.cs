@@ -1,5 +1,4 @@
-﻿using SW.Helpers;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 
 namespace SW.Services.Cancelation
@@ -18,13 +17,13 @@ namespace SW.Services.Cancelation
         internal abstract CancelationResponse Cancelar(string rfc, string uuid);
         internal virtual HttpWebRequest RequestCancelar(string cer, string key, string rfc, string password, string uuid)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "cfdi33/cancel/csd");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "cfdi33/cancel/csd");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new CancelationRequestCSD()
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new CancelationRequestCSD
             {
                 b64Cer = cer,
                 b64Key = key,
@@ -43,25 +42,25 @@ namespace SW.Services.Cancelation
         }
         internal virtual HttpWebRequest RequestCancelar(string rfc, string uuid)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = string.Format("cfdi33/cancel/{0}/{1}", rfc, uuid);
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestCancelar(string pfx, string rfc, string password, string uuid)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "cfdi33/cancel/pfx");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "cfdi33/cancel/pfx");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization, "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new CancelationRequestPFX()
+            request.Headers.Add(HttpRequestHeader.Authorization, "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new CancelationRequestPFX
             {
                 b64Pfx = pfx,
                 password = password,
@@ -79,14 +78,14 @@ namespace SW.Services.Cancelation
         }
         internal virtual HttpWebRequest RequestCancelar(byte[] xmlCancelation)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "cfdi33/cancel/xml");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "cfdi33/cancel/xml");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
             request.ContentLength = 0;
             Helpers.RequestHelper.AddFileToRequest(xmlCancelation, ref request);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

@@ -1,8 +1,5 @@
-﻿using SW.Helpers;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Net;
-using System.Text;
 
 namespace SW.Services.Csd
 {
@@ -23,13 +20,13 @@ namespace SW.Services.Csd
         internal abstract ListInfoCsdResponse ListCsdByRfc(string rfc);
         internal virtual HttpWebRequest RequestUploadCsd(string cer, string key, string password, string certificateType, bool isActive)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url +"certificates/save");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url +"certificates/save");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new UploadCsdRequest()
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new UploadCsdRequest
             {
                 b64Cer = cer,
                 b64Key = key,
@@ -49,64 +46,64 @@ namespace SW.Services.Csd
 
         internal virtual HttpWebRequest RequestDisableCsd(string certificateNumber)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "certificates/" + certificateNumber);
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "certificates/" + certificateNumber);
             request.ContentType = "application/json";
             request.Method = "DELETE";
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestInfoCsd(string certificateNumber)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "certificates/" + certificateNumber);
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "certificates/" + certificateNumber);
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
 
         internal virtual HttpWebRequest RequestActiveCsd(string rfc, string type)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "certificates/rfc/" + rfc + "/" + type);
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "certificates/rfc/" + rfc + "/" + type);
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestListCsd()
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "certificates");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "certificates");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
 
         internal virtual HttpWebRequest RequestListCsdByType(string type)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "certificates/type/" + type);
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "certificates/type/" + type);
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestListCsdByRfc(string rfc)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "certificates/rfc/" + rfc);
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "certificates/rfc/" + rfc);
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

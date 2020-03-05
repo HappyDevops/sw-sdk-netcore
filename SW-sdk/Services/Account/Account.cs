@@ -34,12 +34,12 @@ namespace SW.Services.Account
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                this.SetupRequest();
-                var request = (HttpWebRequest)WebRequest.Create(this.Url + "account/balance");
+                SetupRequest();
+                var request = (HttpWebRequest)WebRequest.Create(Url + "account/balance");
                 request.ContentType = "application/json";
                 request.Method = WebRequestMethods.Http.Get;
-                request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-                Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+                request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+                RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
                 request.ContentLength = 0;
                 return _handler.GetResponse(request);
             }

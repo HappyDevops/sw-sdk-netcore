@@ -1,8 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SW.Services.Account;
-using SW.Helpers;
 using Test_SW.Helpers;
 
 namespace Test_SW.Services.Account_Test

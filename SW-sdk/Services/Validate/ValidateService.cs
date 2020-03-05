@@ -1,8 +1,4 @@
-﻿using SW.Entities;
-using SW.Helpers;
-using System;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 
 namespace SW.Services.Validate
 {
@@ -16,31 +12,31 @@ namespace SW.Services.Validate
         }
         internal virtual HttpWebRequest RequestValidateXml(byte[] xml)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "/validate/cfdi33");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "/validate/cfdi33");
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
             request.ContentLength = xml != null ? xml.Length : 0;
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             Helpers.RequestHelper.AddFileToRequest(xml, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestValidateLrfc(string Lrfc)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + string.Format("lrfc/{0}", Lrfc));
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + string.Format("lrfc/{0}", Lrfc));
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestValidateLco(string Lco)
         {
-            this.SetupRequest();
+            SetupRequest();
             var request = (HttpWebRequest)WebRequest.Create(Url + string.Format("lco/{0}", Lco));
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

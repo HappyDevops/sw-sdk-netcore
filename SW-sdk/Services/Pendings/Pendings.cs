@@ -21,7 +21,7 @@ namespace SW.Services.Pendings
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestPendings(rfc);
+                HttpWebRequest request = RequestPendings(rfc);
                 return handler.GetResponse(request);
             }
             catch (Exception e)

@@ -6,8 +6,6 @@ namespace SW.Services.Cancelation
 {
     public class Cancelation : CancelationService
     {
-
-        CanelationResponseHandler _handler;
         /// <summary>
         /// This Service is Not Implemented
         /// </summary>
@@ -16,7 +14,6 @@ namespace SW.Services.Cancelation
         /// <param name="password"></param>
         public Cancelation(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxy, proxyPort)
         {
-            _handler = new CanelationResponseHandler();
         }
         /// <summary>
         /// This Service is Not Implemented
@@ -25,7 +22,6 @@ namespace SW.Services.Cancelation
         /// <param name="token"></param>
         public Cancelation(string url, string token, int proxyPort = 0, string proxy = null) : base(url, token, proxy, proxyPort)
         {
-            _handler = new CanelationResponseHandler();
         }
 
         internal override CancelationResponse Cancelar(string cer, string key, string rfc, string password, string uuid)
@@ -35,9 +31,9 @@ namespace SW.Services.Cancelation
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var content = this.RequestCancelar(cer, key, rfc, password, uuid);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestCancelar(cer, key, rfc, password, uuid);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "cfdi33/cancel/csd", headers, content, proxy);
             }
             catch (Exception e)
@@ -51,13 +47,13 @@ namespace SW.Services.Cancelation
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestCancelar(rfc, uuid);
+                HttpWebRequest request = RequestCancelar(rfc, uuid);
                 request.ContentType = "application/json";
                 request.ContentLength = 0;
                 request.Method = WebRequestMethods.Http.Post;
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
                 var headers = GetHeaders();
-                return handler.GetPostResponse(this.Url, headers, $"cfdi33/cancel/{rfc}/{uuid}", proxy);
+                return handler.GetPostResponse(Url, headers, $"cfdi33/cancel/{rfc}/{uuid}", proxy);
             }
             catch (Exception e)
             {
@@ -71,9 +67,9 @@ namespace SW.Services.Cancelation
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var content = this.RequestCancelarFile(xmlCancelation);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestCancelarFile(xmlCancelation);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "cfdi33/cancel/xml", headers, content, proxy);
             }
             catch (Exception e)
@@ -88,9 +84,9 @@ namespace SW.Services.Cancelation
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var content = this.RequestCancelar(pfx, rfc, password, uuid);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestCancelar(pfx, rfc, password, uuid);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "cfdi33/cancel/pfx", headers, content, proxy);
             }
             catch (Exception e)

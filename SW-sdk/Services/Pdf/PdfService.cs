@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using SW.Entities;
-using SW.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 
@@ -21,18 +18,18 @@ namespace SW.Services.Pdf
         }
         internal virtual HttpWebRequest RequestPdf(byte[] xml, string TemplateId, Dictionary<string, string> ObservacionesAdicionales = null)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + string.Format("/pdf/v1/generate"));
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "/pdf/v1/generate");
             request.ContentType = "multipart/form-data; boundary=" + boundary;
             request.Headers.Add("Authorization", "Bearer " + Token);
             request.Headers.Add("TemplateId", TemplateId);
             request.Method = WebRequestMethods.Http.Post;
             request.KeepAlive = true;
-            Stream memStream = new System.IO.MemoryStream();
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            Stream memStream = new MemoryStream();
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             string body = MultipartXmlContent(xml);
             string pObservacionesGenerales = BodyObservacionesAdicionales(ObservacionesAdicionales);
-            body = string.Format("{0}{1}--\r\n", body, pObservacionesGenerales);
+            body = $"{body}{pObservacionesGenerales}--\r\n";
             byte[] byteArray = Encoding.UTF8.GetBytes(body);
             request.ContentLength = byteArray.Length;
             request.Timeout = byteArray.Length * 5;

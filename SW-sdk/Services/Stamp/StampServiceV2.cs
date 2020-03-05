@@ -1,8 +1,4 @@
-﻿using SW.Entities;
-using SW.Helpers;
-using System;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 
 namespace SW.Services.Stamp
 {
@@ -16,14 +12,14 @@ namespace SW.Services.Stamp
         }
         internal virtual HttpWebRequest RequestStamping(byte[] xml, string version, string format, string operation)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + string.Format("cfdi33/v2/{0}/{1}/{2}", operation, version, format));
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + string.Format("cfdi33/v2/{0}/{1}/{2}", operation, version, format));
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
             request.ContentLength = xml != null ? xml.Length : 0;
             Helpers.RequestHelper.AddFileToRequest(xml, ref request);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
 

@@ -1,10 +1,7 @@
 ﻿using SW.Entities;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace SW.Services
 {
@@ -41,7 +38,7 @@ namespace SW.Services
                     }
                 }
                 else
-                    return new T()
+                    return new T
                     {
                         message = ((int)response.StatusCode).ToString(),
                         status = "error",
@@ -50,7 +47,7 @@ namespace SW.Services
             }
             catch (Exception)
             {
-                return new T()
+                return new T
                 {
                     message = ((int)response.StatusCode).ToString(),
                     status = "error",

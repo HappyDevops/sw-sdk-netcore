@@ -1,11 +1,7 @@
-﻿using SW.Entities;
-using SW.Helpers;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
+
 namespace SW.Services.Validate
 {
     public abstract class ValidateService : Services
@@ -25,34 +21,35 @@ namespace SW.Services.Validate
         }
         internal virtual Dictionary<string, string> GetHeaders()
         {
-            this.SetupRequest();
-            Dictionary<string, string> headers = new Dictionary<string, string>() {
-                    { "Authorization", "bearer " + this.Token }
+            SetupRequest();
+            Dictionary<string, string> headers = new Dictionary<string, string>
+            {
+                    { "Authorization", "bearer " + Token }
                 };
             return headers;
         }
         internal virtual HttpWebRequest RequestValidarLrfc(string lrfc)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = string.Format("lrfc/{0}", lrfc);
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestValidarLco(string lco)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = string.Format("lco/{0}", lco);
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

@@ -1,5 +1,4 @@
-﻿using SW.Helpers;
-using SW.Services.AcceptReject;
+﻿using SW.Services.AcceptReject;
 using SW.Services.Account;
 using SW.Services.Authentication;
 using SW.Services.Cancelation;
@@ -10,9 +9,6 @@ using SW.Services.Relations;
 using SW.Services.Stamp;
 using SW.Services.Validate;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SW.Helpers
 {
@@ -20,7 +16,7 @@ namespace SW.Helpers
     {
         internal static AuthResponse ToAuthResponse(this Exception ex)
         {
-            return new AuthResponse()
+            return new AuthResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -29,7 +25,7 @@ namespace SW.Helpers
         }
         internal static AccountResponse ToAccountResponse(this Exception ex)
         {
-            return new AccountResponse()
+            return new AccountResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -38,7 +34,7 @@ namespace SW.Helpers
         }
         internal static CancelationResponse ToCancelationResponse(this Exception ex)
         {
-            return new CancelationResponse()
+            return new CancelationResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -47,7 +43,7 @@ namespace SW.Helpers
         }
         internal static StampResponseV1 ToStampResponseV1(this Exception ex)
         {
-            return new StampResponseV1()
+            return new StampResponseV1
             {
                 message = ex.Message,
                 status = "error",
@@ -56,7 +52,7 @@ namespace SW.Helpers
         }
         internal static StampResponseV2 ToStampResponseV2(this Exception ex)
         {
-            return new StampResponseV2()
+            return new StampResponseV2
             {
                 message = ex.Message,
                 status = "error",
@@ -65,7 +61,7 @@ namespace SW.Helpers
         }
         internal static StampResponseV3 ToStampResponseV3(this Exception ex)
         {
-            return new StampResponseV3()
+            return new StampResponseV3
             {
                 message = ex.Message,
                 status = "error",
@@ -74,7 +70,7 @@ namespace SW.Helpers
         }
         internal static StampResponseV4 ToStampResponseV4(this Exception ex)
         {
-            return new StampResponseV4()
+            return new StampResponseV4
             {
                 message = ex.Message,
                 status = "error",
@@ -83,7 +79,7 @@ namespace SW.Helpers
         }
         internal static ValidateXMLResponse ToValidateXMLResponse(this Exception ex)
         {
-            return new ValidateXMLResponse()
+            return new ValidateXMLResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -92,7 +88,7 @@ namespace SW.Helpers
         }
         internal static ValidateLcoResponse ToValidateLcoResponse(this Exception ex)
         {
-            return new ValidateLcoResponse()
+            return new ValidateLcoResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -101,7 +97,7 @@ namespace SW.Helpers
         }
         internal static ValidateLrfcResponse ToValidateLrfcResponse(this Exception ex)
         {
-            return new ValidateLrfcResponse()
+            return new ValidateLrfcResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -117,7 +113,7 @@ namespace SW.Helpers
         }
         internal static AcceptRejectResponse ToAcceptRejectResponse(this Exception ex)
         {
-            return new AcceptRejectResponse()
+            return new AcceptRejectResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -126,7 +122,7 @@ namespace SW.Helpers
         }
         internal static RelationsResponse ToRelationsResponse(this Exception ex)
         {
-            return new RelationsResponse()
+            return new RelationsResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -135,7 +131,7 @@ namespace SW.Helpers
         }
         internal static PendingsResponse ToPendingsResponse(this Exception ex)
         {
-            return new PendingsResponse()
+            return new PendingsResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -144,7 +140,7 @@ namespace SW.Helpers
         }
         internal static PdfResponse ToPdfResponse(this Exception ex)
         {
-            return new PdfResponse()
+            return new PdfResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -153,7 +149,7 @@ namespace SW.Helpers
         }
         internal static CsdResponse ToCsdResponse(this Exception ex)
         {
-            return new CsdResponse()
+            return new CsdResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -162,7 +158,7 @@ namespace SW.Helpers
         }
         internal static InfoCsdResponse ToInfoCsdResponse(this Exception ex)
         {
-            return new InfoCsdResponse()
+            return new InfoCsdResponse
             {
                 message = ex.Message,
                 status = "error",
@@ -171,7 +167,7 @@ namespace SW.Helpers
         }
         internal static ListInfoCsdResponse ToListInfoCsdResponse(this Exception ex)
         {
-            return new ListInfoCsdResponse()
+            return new ListInfoCsdResponse
             {
                 message = ex.Message,
                 status = "error",

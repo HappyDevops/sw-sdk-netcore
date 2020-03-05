@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using SW.Helpers;
 
 namespace SW.Services.Pdf
 {
@@ -26,8 +24,8 @@ namespace SW.Services.Pdf
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
                 var headers = GetHeaders();
                 var content = GetMultipartContent(xmlBytes, ObservacionesAdicionales);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = Helpers.RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("/pdf/v1/generate",
                                 _operation), headers, content, proxy);
             }

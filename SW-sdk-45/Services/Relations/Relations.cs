@@ -1,10 +1,6 @@
 ﻿using SW.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SW.Services.Relations
 {
@@ -26,9 +22,9 @@ namespace SW.Services.Relations
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var content = this.RequestRelations(cer, key, rfc, password, uuid);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestRelations(cer, key, rfc, password, uuid);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "relations/csd", headers, content, proxy);
             }
             catch (Exception e)
@@ -43,9 +39,9 @@ namespace SW.Services.Relations
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var content = this.RequestRelations(xmlCancelation);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestRelations(xmlCancelation);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "relations/xml", headers, content, proxy);
             }
             catch (Exception e)
@@ -60,9 +56,9 @@ namespace SW.Services.Relations
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var content = this.RequestRelations(pfx, rfc, password, uuid);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestRelations(pfx, rfc, password, uuid);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "relations/pfx", headers, content, proxy);
             }
             catch (Exception e)
@@ -76,13 +72,13 @@ namespace SW.Services.Relations
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestRelations(rfc, uuid);
+                HttpWebRequest request = RequestRelations(rfc, uuid);
                 request.ContentType = "application/json";
                 request.ContentLength = 0;
                 request.Method = WebRequestMethods.Http.Post;
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url, headers, $"relations/{rfc}/{uuid}", proxy);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url, headers, $"relations/{rfc}/{uuid}", proxy);
             }
             catch (Exception e)
             {

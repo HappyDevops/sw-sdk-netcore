@@ -1,7 +1,4 @@
 ﻿using System;
-using SW.Helpers;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 
@@ -24,7 +21,7 @@ namespace SW.Services.Validate
             try
             {
                 var xmlBytes = Encoding.UTF8.GetBytes(XML);
-                var request = this.RequestValidateXml(xmlBytes);
+                var request = RequestValidateXml(xmlBytes);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -37,7 +34,7 @@ namespace SW.Services.Validate
             ValidateLrfcResponseHandler handler = new ValidateLrfcResponseHandler();
             try
             {
-                var request = this.RequestValidateLrfc(Lrfc);
+                var request = RequestValidateLrfc(Lrfc);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -51,7 +48,7 @@ namespace SW.Services.Validate
             ValidateLcoResponseHandler handler = new ValidateLcoResponseHandler();
             try
             {
-                var request = this.RequestValidateLco(Lco);
+                var request = RequestValidateLco(Lco);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)

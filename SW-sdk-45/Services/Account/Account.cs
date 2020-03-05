@@ -1,7 +1,6 @@
 ﻿using System;
 using SW.Helpers;
 using SW.Entities;
-using System.Net;
 using System.Collections.Generic;
 
 namespace SW.Services.Account
@@ -35,13 +34,14 @@ namespace SW.Services.Account
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                this.SetupRequest();
+                SetupRequest();
 
-                Dictionary<string, string> headers = new Dictionary<string, string>() {
-                    { "Authorization", "bearer " + this.Token }
+                Dictionary<string, string> headers = new Dictionary<string, string>
+                {
+                    { "Authorization", "bearer " + Token }
                 };
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return _handler.GetResponse(this.Url, headers, "account/balance", proxy);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return _handler.GetResponse(Url, headers, "account/balance", proxy);
             }
             catch (Exception e)
             {

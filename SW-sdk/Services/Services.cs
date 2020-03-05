@@ -47,7 +47,7 @@ namespace SW.Services
         }
         public Services(string url, string token, string proxy, int proxyPort)
         {
-            _url = Helpers.RequestHelper.NormalizeBaseUrl(url); ;
+            _url = RequestHelper.NormalizeBaseUrl(url); ;
             _token = token;
             _expirationDate = DateTime.Now.AddYears(_timeSession);
             _proxy = proxy;
@@ -55,7 +55,7 @@ namespace SW.Services
         }
         public Services(string url, string user, string password, string proxy, int proxyPort)
         {
-            _url = Helpers.RequestHelper.NormalizeBaseUrl(url); ;
+            _url = RequestHelper.NormalizeBaseUrl(url); ;
             _user = user;
             _password = password;
             _proxy = proxy;

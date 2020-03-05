@@ -1,6 +1,4 @@
 ﻿using SW.Entities;
-using SW.Helpers;
-using System.Xml.Linq;
 
 namespace SW.Services.Account
 {

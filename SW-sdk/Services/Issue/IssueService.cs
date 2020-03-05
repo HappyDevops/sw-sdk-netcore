@@ -1,7 +1,4 @@
-﻿using SW.Entities;
-using SW.Helpers;
-using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 
 namespace SW.Services.Issue
@@ -16,12 +13,12 @@ namespace SW.Services.Issue
         }
         internal virtual HttpWebRequest RequestStampJson(string json, string version, string operation)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + string.Format("v3/cfdi33/{0}/{1}", operation, version));
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + string.Format("v3/cfdi33/{0}/{1}", operation, version));
             request.ContentType = "application/jsontoxml";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             request.ContentLength = json.Length;
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {

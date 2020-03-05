@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
-using System.Text;
 using static SW.Services.Services;
 
 namespace SW.Helpers
@@ -33,7 +30,7 @@ namespace SW.Helpers
             request.ContentType = "multipart/form-data; boundary=" + boundary;
             request.Method = "POST";
             request.KeepAlive = true;
-            Stream memStream = new System.IO.MemoryStream();
+            Stream memStream = new MemoryStream();
             var boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" +
                                                                     boundary + "\r\n");
             var endBoundaryBytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" +

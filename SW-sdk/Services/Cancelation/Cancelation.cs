@@ -34,7 +34,7 @@ namespace SW.Services.Cancelation
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestCancelar(cer, key, rfc, password, uuid);
+                HttpWebRequest request = RequestCancelar(cer, key, rfc, password, uuid);
 
                 return handler.GetResponse(request);
             }
@@ -50,7 +50,7 @@ namespace SW.Services.Cancelation
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestCancelar(xmlCancelation);
+                HttpWebRequest request = RequestCancelar(xmlCancelation);
 
                 return handler.GetResponse(request);
             }
@@ -65,7 +65,7 @@ namespace SW.Services.Cancelation
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestCancelar(pfx, rfc, password, uuid);
+                HttpWebRequest request = RequestCancelar(pfx, rfc, password, uuid);
 
                 return handler.GetResponse(request);
             }
@@ -80,7 +80,7 @@ namespace SW.Services.Cancelation
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestCancelar(rfc, uuid);
+                HttpWebRequest request = RequestCancelar(rfc, uuid);
                 return handler.GetResponse(request);
             }
             catch (Exception e)

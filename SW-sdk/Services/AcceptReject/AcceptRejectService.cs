@@ -18,14 +18,14 @@ namespace SW.Services.AcceptReject
         internal abstract AcceptRejectResponse AcceptRejectRequest(string rfc, string uuid, EnumAcceptReject enumCancelation);
         internal virtual HttpWebRequest RequestAcceptReject(string cer, string key, string rfc, string password, AceptacionRechazoItem[] uuids)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = string.Format("acceptreject/csd");
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsCSD()
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsCSD
             {
                 b64Cer = cer,
                 b64Key = key,
@@ -44,25 +44,25 @@ namespace SW.Services.AcceptReject
         }
         internal virtual HttpWebRequest RequestAcceptReject(byte[] xmlCancelation, EnumAcceptReject enumCancelation)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "acceptreject/xml");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "acceptreject/xml");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             request.ContentLength = 0;
-            Helpers.RequestHelper.AddFileToRequest(xmlCancelation, ref request);
+            RequestHelper.AddFileToRequest(xmlCancelation, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestAcceptReject(string pfx, string rfc, string password, AceptacionRechazoItem[] uuid)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "acceptreject/pfx");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "acceptreject/pfx");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization, "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsPFX()
+            request.Headers.Add(HttpRequestHeader.Authorization, "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsPFX
             {
                 b64Pfx = pfx,
                 password = password,
@@ -80,14 +80,14 @@ namespace SW.Services.AcceptReject
         }
         internal virtual HttpWebRequest RequestAcceptReject(string rfc, string uuid, EnumAcceptReject enumAcceptReject)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = string.Format("acceptreject/{0}/{1}/{2}", rfc, uuid, enumAcceptReject.ToString());
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SW.Helpers;
-using System.Net;
 
 namespace SW.Services.Csd
 {
@@ -31,9 +26,9 @@ namespace SW.Services.Csd
                     throw new ServicesException("El certificado o llave privada vienen vacios");
                 }
                 var headers = GetHeaders();
-                var content = this.RequestCsd(cer, key, password, certificateType, isActive);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var content = RequestCsd(cer, key, password, certificateType, isActive);
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 "certificates/save", headers, content, proxy);
             }
             catch (Exception e)
@@ -49,8 +44,8 @@ namespace SW.Services.Csd
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetDeleteResponse(this.Url, headers,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetDeleteResponse(Url, headers,
                                 "certificates/" + certificateNumber, proxy);
             }
             catch (Exception e)
@@ -65,8 +60,8 @@ namespace SW.Services.Csd
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url, headers,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url, headers,
                                 "certificates/" + certificateNumber, proxy);
             }
             catch (Exception e)
@@ -81,8 +76,8 @@ namespace SW.Services.Csd
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url, headers,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url, headers,
                                 "certificates/rfc/" + rfc + "/" + type, proxy);
             }
             catch (Exception e)
@@ -97,8 +92,8 @@ namespace SW.Services.Csd
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url, headers,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url, headers,
                                 "certificates", proxy);
             }
             catch (Exception e)
@@ -113,8 +108,8 @@ namespace SW.Services.Csd
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url, headers,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url, headers,
                                 "certificates/type/" + type, proxy);
             }
             catch (Exception e)
@@ -129,8 +124,8 @@ namespace SW.Services.Csd
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
                 var headers = GetHeaders();
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url, headers,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url, headers,
                                 "certificates/rfc/" + rfc, proxy);
             }
             catch (Exception e)

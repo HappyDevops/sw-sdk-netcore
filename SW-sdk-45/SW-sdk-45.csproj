@@ -56,7 +56,6 @@
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\ResponseHelper.cs" />
     <Compile Include="Helpers\ResponseType.cs" />
-    <Compile Include="Helpers\StreamUtil.cs" />
     <Compile Include="Helpers\Validation.cs" />
     <Compile Include="Helpers\XmlUtils.cs" />
     <Compile Include="Services\AcceptReject\AcceptReject.cs" />

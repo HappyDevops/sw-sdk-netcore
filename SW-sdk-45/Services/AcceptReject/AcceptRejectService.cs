@@ -1,6 +1,5 @@
 ﻿using SW.Helpers;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -21,15 +20,16 @@ namespace SW.Services.AcceptReject
         internal abstract AcceptRejectResponse AcceptRejectRequest(string rfc, string uuid, EnumAcceptReject enumCancelation);
         internal virtual Dictionary<string, string> GetHeaders()
         {
-            this.SetupRequest();
-            Dictionary<string, string> headers = new Dictionary<string, string>() {
-                    { "Authorization", "bearer " + this.Token }
+            SetupRequest();
+            Dictionary<string, string> headers = new Dictionary<string, string>
+            {
+                    { "Authorization", "bearer " + Token }
                 };
             return headers;
         }
         internal virtual StringContent RequestAcceptReject(string cer, string key, string rfc, string password, AceptacionRechazoItem[] uuids)
         {
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new AcceptRejectRequestCSD()
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new AcceptRejectRequestCSD
             {
                 b64Cer = cer,
                 b64Key = key,
@@ -49,7 +49,7 @@ namespace SW.Services.AcceptReject
         }
         internal virtual StringContent RequestAcceptReject(string pfx, string rfc, string password, AceptacionRechazoItem[] uuids)
         {
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new AcceptRejectRequestPFX()
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new AcceptRejectRequestPFX
             {
                 b64Pfx = pfx,
                 password = password,
@@ -61,14 +61,14 @@ namespace SW.Services.AcceptReject
         }
         internal virtual HttpWebRequest RequestAcceptReject(string rfc, string uuid, EnumAcceptReject enumAcceptReject)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = $"acceptreject/{rfc}/{uuid}/{enumAcceptReject.ToString()}";
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using SW.Helpers;
 
 namespace SW.Services.Pdf
 {
@@ -22,7 +20,7 @@ namespace SW.Services.Pdf
             {
                 string format = isB64 ? "b64" : "";
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
-                var request = this.RequestPdf(xmlBytes, templateId);
+                var request = RequestPdf(xmlBytes, templateId);
                 return handler.GetResponse(request);
             }catch(Exception ex)
             {

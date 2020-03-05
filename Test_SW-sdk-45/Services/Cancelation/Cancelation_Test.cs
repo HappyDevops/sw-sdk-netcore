@@ -1,15 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SW.Services.Cancelation;
-using SW.Helpers;
 using Test_SW.Helpers;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using System.Xml;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography;
-using System.IO;
 
 namespace Test_SW.Services.Cancelation_Test_45
 {

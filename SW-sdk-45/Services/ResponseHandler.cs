@@ -2,20 +2,18 @@
 using SW.Helpers;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 
 namespace SW.Services
 {
     internal abstract class ResponseHandler<T>
         where T : Response, new()
     {
-        public ResponseHandler() { }
+        protected ResponseHandler() { }
         public readonly string _xmlOriginal;
-        public ResponseHandler(string xmlOriginal)
+
+        protected ResponseHandler(string xmlOriginal)
         {
             _xmlOriginal = xmlOriginal;
         }
@@ -23,7 +21,7 @@ namespace SW.Services
         {
             try
             {
-                using (HttpClient client = new HttpClient(proxy))
+                using (var client = new HttpClient(proxy))
                 {
                     client.BaseAddress = new Uri(url);
                     foreach (var header in headers)
@@ -36,7 +34,7 @@ namespace SW.Services
             }
             catch (HttpRequestException wex)
             {
-                return new T()
+                return new T
                 {
                     message = wex.Message,
                     status = "error",
@@ -61,7 +59,7 @@ namespace SW.Services
             }
             catch (HttpRequestException wex)
             {
-                return new T()
+                return new T
                 {
                     message = wex.Message,
                     status = "error",
@@ -87,7 +85,7 @@ namespace SW.Services
             }
             catch (HttpRequestException wex)
             {
-                return new T()
+                return new T
                 {
                     message = wex.Message,
                     status = "error",
@@ -113,7 +111,7 @@ namespace SW.Services
             }
             catch (HttpRequestException wex)
             {
-                return new T()
+                return new T
                 {
                     message = wex.Message,
                     status = "error",
@@ -130,17 +128,17 @@ namespace SW.Services
                 {
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
                 }
-                else
-                    return new T()
-                    {
-                        message = ((int)response.StatusCode).ToString(),
-                        status = "error",
-                        messageDetail = response.ReasonPhrase
-                    };
+
+                return new T
+                {
+                    message = ((int)response.StatusCode).ToString(),
+                    status = "error",
+                    messageDetail = response.ReasonPhrase
+                };
             }
             catch (Exception)
             {
-                return new T()
+                return new T
                 {
                     message = ((int)response.StatusCode).ToString(),
                     status = "error",

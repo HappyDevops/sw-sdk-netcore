@@ -1,8 +1,4 @@
-﻿using SW.Entities;
-using SW.Helpers;
-using System;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 
 namespace SW.Services.Stamp
 {
@@ -16,10 +12,10 @@ namespace SW.Services.Stamp
         }
         internal virtual HttpWebRequest RequestStamping(byte[] xml, string version, string format, string operation)
         {
-            this.SetupRequest();
+            SetupRequest();
             HttpWebRequest.DefaultMaximumErrorResponseLength = (1000000 + xml.Length) * 2;
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + string.Format("cfdi33/{0}/{1}/{2}", operation, version, format));
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            var request = (HttpWebRequest)WebRequest.Create(Url + string.Format("cfdi33/{0}/{1}/{2}", operation, version, format));
+            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             request.ProtocolVersion = HttpVersion.Version10;
             request.Timeout = 300000;
             request.ReadWriteTimeout = 500000;
@@ -27,7 +23,7 @@ namespace SW.Services.Stamp
             request.ServicePoint.Expect100Continue = false;
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
             request.ContentLength = xml != null ? xml.Length : 0;
             Helpers.RequestHelper.AddFileToRequest(xml, ref request);
             return request;

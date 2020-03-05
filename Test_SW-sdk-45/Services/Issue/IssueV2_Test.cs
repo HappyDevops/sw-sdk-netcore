@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Test_SW.Helpers;
-using SW.Services.Issue;
 using SW.Services.Stamp;
 using System.IO;
 using System.Xml;

@@ -22,7 +22,7 @@ namespace SW.Services.Stamp
             {
                 string format = isb64 ? "b64" : "";
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
-                var request = this.RequestStamping(xmlBytes, StampTypes.v1.ToString(), format, _operation);
+                var request = RequestStamping(xmlBytes, StampTypes.v1.ToString(), format, _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace SW.Services.Stamp
             {
                 string format = isb64 ? "b64" : "";
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
-                var request = this.RequestStamping(xmlBytes, StampTypes.v2.ToString(), format, _operation);
+                var request = RequestStamping(xmlBytes, StampTypes.v2.ToString(), format, _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace SW.Services.Stamp
             {
                 string format = isb64 ? "b64" : "";
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
-                var request = this.RequestStamping(xmlBytes, StampTypes.v3.ToString(), format, _operation);
+                var request = RequestStamping(xmlBytes, StampTypes.v3.ToString(), format, _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace SW.Services.Stamp
             {
                 string format = isb64 ? "b64" : "";
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
-                var request = this.RequestStamping(xmlBytes, StampTypes.v4.ToString(), format, _operation);
+                var request = RequestStamping(xmlBytes, StampTypes.v4.ToString(), format, _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)

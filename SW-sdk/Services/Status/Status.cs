@@ -1,8 +1,4 @@
-﻿using System;
-using SW.Helpers;
-using System.Net;
-using SAT.Services;
-using SAT.Services.ConsultaCFDIService;
+﻿using SAT.Services.ConsultaCFDIService;
 
 namespace SW.Services.Status
 {
@@ -14,7 +10,7 @@ namespace SW.Services.Status
 
         internal override Acuse StatusRequest(string rfcEmisor, string rfcReceptor, string total, string uuid)
         {
-            return this.RequestStatus(rfcEmisor, rfcReceptor, total, uuid);
+            return RequestStatus(rfcEmisor, rfcReceptor, total, uuid);
         }
        
         public Acuse GetStatusCFDI(string rfcEmisor, string rfcReceptor, string Total, string uuid)

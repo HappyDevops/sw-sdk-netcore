@@ -24,8 +24,8 @@ namespace SW.Services.Issue
             {
                 var headers = GetHeaders();
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/jsontoxml");
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("v3/cfdi33/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v1.ToString(),
@@ -44,8 +44,8 @@ namespace SW.Services.Issue
             {
                 var headers = GetHeaders();
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/jsontoxml");
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("v3/cfdi33/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v2.ToString(),
@@ -63,8 +63,8 @@ namespace SW.Services.Issue
             {
                 var headers = GetHeaders();
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/jsontoxml");
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("v3/cfdi33/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v3.ToString(),
@@ -82,8 +82,8 @@ namespace SW.Services.Issue
             {
                 var headers = GetHeaders();
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/jsontoxml");
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("v3/cfdi33/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v4.ToString(),

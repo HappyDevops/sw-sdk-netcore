@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SW.Helpers;
 using System.Net;
 
@@ -29,7 +26,7 @@ namespace SW.Services.Csd
                 {
                     throw new ServicesException("El certificado o llave privada vienen vacios");
                 }
-                HttpWebRequest request = this.RequestUploadCsd(cer, key, password, certificateType, isActive);
+                HttpWebRequest request = RequestUploadCsd(cer, key, password, certificateType, isActive);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -44,7 +41,7 @@ namespace SW.Services.Csd
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestDisableCsd(certificateNumber);
+                HttpWebRequest request = RequestDisableCsd(certificateNumber);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -59,7 +56,7 @@ namespace SW.Services.Csd
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestInfoCsd(certificateNumber);
+                HttpWebRequest request = RequestInfoCsd(certificateNumber);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -74,7 +71,7 @@ namespace SW.Services.Csd
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestActiveCsd(rfc, type);
+                HttpWebRequest request = RequestActiveCsd(rfc, type);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -89,7 +86,7 @@ namespace SW.Services.Csd
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestListCsd();
+                HttpWebRequest request = RequestListCsd();
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -104,7 +101,7 @@ namespace SW.Services.Csd
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestListCsdByType(type);
+                HttpWebRequest request = RequestListCsdByType(type);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -119,7 +116,7 @@ namespace SW.Services.Csd
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestListCsdByRfc(type);
+                HttpWebRequest request = RequestListCsdByRfc(type);
                 return handler.GetResponse(request);
             }
             catch (Exception e)

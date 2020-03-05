@@ -1,12 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using SW.Helpers;
 using SW.Services.Validate;
 using Test_SW.Helpers;
-using System.Xml;
 
 namespace Test_SW.Services.Validate_Test
 {

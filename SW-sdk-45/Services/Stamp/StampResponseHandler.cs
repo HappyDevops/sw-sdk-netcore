@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Xml;
 using SW.Helpers;
 
 namespace SW.Services.Stamp

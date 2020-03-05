@@ -1,10 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
-using SW.Helpers;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Test_SW.Helpers;
-using SW.Services.AcceptReject;
-using System.Text;
 using SW.Services.Status;
 
 namespace Test_SW.Services.Status_Test

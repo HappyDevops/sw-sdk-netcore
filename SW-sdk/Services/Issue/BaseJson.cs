@@ -1,7 +1,6 @@
 ﻿using SW.Helpers;
 using SW.Services.Stamp;
 using System;
-using System.Text;
 
 namespace SW.Services.Issue
 {
@@ -21,7 +20,7 @@ namespace SW.Services.Issue
             StampResponseHandlerV1 handler = new StampResponseHandlerV1();
             try
             {
-                var request = this.RequestStampJson(json, StampTypes.v1.ToString(), _operation);
+                var request = RequestStampJson(json, StampTypes.v1.ToString(), _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -34,7 +33,7 @@ namespace SW.Services.Issue
             StampResponseHandlerV2 handler = new StampResponseHandlerV2();
             try
             {
-                var request = this.RequestStampJson(json, StampTypes.v2.ToString(), _operation);
+                var request = RequestStampJson(json, StampTypes.v2.ToString(), _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -47,7 +46,7 @@ namespace SW.Services.Issue
             StampResponseHandlerV3 handler = new StampResponseHandlerV3();
             try
             {
-                var request = this.RequestStampJson(json, StampTypes.v3.ToString(), _operation);
+                var request = RequestStampJson(json, StampTypes.v3.ToString(), _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)
@@ -60,7 +59,7 @@ namespace SW.Services.Issue
             StampResponseHandlerV4 handler = new StampResponseHandlerV4();
             try
             {
-                var request = this.RequestStampJson(json, StampTypes.v4.ToString(), _operation);
+                var request = RequestStampJson(json, StampTypes.v4.ToString(), _operation);
                 return handler.GetResponse(request);
             }
             catch (Exception ex)

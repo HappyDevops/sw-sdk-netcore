@@ -21,7 +21,7 @@ namespace SW.Services.Relations
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestRelations(cer, key, rfc, password, uuid);
+                HttpWebRequest request = RequestRelations(cer, key, rfc, password, uuid);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -35,7 +35,7 @@ namespace SW.Services.Relations
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestRelations(xmlCancelation);
+                HttpWebRequest request = RequestRelations(xmlCancelation);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -49,7 +49,7 @@ namespace SW.Services.Relations
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestRelations(pfx, rfc, password, uuid);
+                HttpWebRequest request = RequestRelations(pfx, rfc, password, uuid);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -63,7 +63,7 @@ namespace SW.Services.Relations
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestRelations(rfc, uuid);
+                HttpWebRequest request = RequestRelations(rfc, uuid);
                 return handler.GetResponse(request);
             }
             catch (Exception e)

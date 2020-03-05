@@ -1,8 +1,6 @@
 ﻿using SW.Helpers;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 
 namespace SW.Services.Relations
 {
@@ -20,14 +18,14 @@ namespace SW.Services.Relations
         internal abstract RelationsResponse RelationsRequest(string rfc, string uuid);
         internal virtual HttpWebRequest RequestRelations(string cer, string key, string rfc, string password, string uuid)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = string.Format("relations/csd");
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsCSD()
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsCSD
             {
                 b64Cer = cer,
                 b64Key = key,
@@ -46,25 +44,25 @@ namespace SW.Services.Relations
         }
         internal virtual HttpWebRequest RequestRelations(byte[] xmlCancelation)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "relations/xml");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "relations/xml");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
             request.ContentLength = 0;
-            Helpers.RequestHelper.AddFileToRequest(xmlCancelation, ref request);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            RequestHelper.AddFileToRequest(xmlCancelation, ref request);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
         internal virtual HttpWebRequest RequestRelations(string pfx, string rfc, string password, string uuid)
         {
-            this.SetupRequest();
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + "relations/pfx");
+            SetupRequest();
+            var request = (HttpWebRequest)WebRequest.Create(Url + "relations/pfx");
             request.ContentType = "application/json";
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization, "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsPFX()
+            request.Headers.Add(HttpRequestHeader.Authorization, "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestsPFX
             {
                 b64Pfx = pfx,
                 password = password,
@@ -82,14 +80,14 @@ namespace SW.Services.Relations
         }
         internal virtual HttpWebRequest RequestRelations(string rfc, string uuid)
         {
-            this.SetupRequest();
+            SetupRequest();
             string path = $"relations/{rfc}/{uuid}";
-            var request = (HttpWebRequest)WebRequest.Create(this.Url + path);
+            var request = (HttpWebRequest)WebRequest.Create(Url + path);
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Post;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + this.Token);
-            Helpers.RequestHelper.SetupProxy(this.Proxy, this.ProxyPort, ref request);
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
+            RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
         }
     }

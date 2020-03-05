@@ -24,7 +24,7 @@ namespace SW.Services.AcceptReject
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestAcceptReject(cer, key, rfc, password, uuids);
+                HttpWebRequest request = RequestAcceptReject(cer, key, rfc, password, uuids);
                 return handler.GetResponse(request);
             }
             catch (Exception e)
@@ -38,7 +38,7 @@ namespace SW.Services.AcceptReject
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestAcceptReject(xmlCancelation, enumAcceptReject);
+                HttpWebRequest request = RequestAcceptReject(xmlCancelation, enumAcceptReject);
 
                 return handler.GetResponse(request);
             }
@@ -53,7 +53,7 @@ namespace SW.Services.AcceptReject
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestAcceptReject(pfx, rfc, password, uuid);
+                HttpWebRequest request = RequestAcceptReject(pfx, rfc, password, uuid);
 
                 return handler.GetResponse(request);
             }
@@ -68,7 +68,7 @@ namespace SW.Services.AcceptReject
             try
             {
                 new Validation(Url, User, Password, Token).ValidateHeaderParameters();
-                HttpWebRequest request = this.RequestAcceptReject(rfc, uuid, enumAcceptReject);
+                HttpWebRequest request = RequestAcceptReject(rfc, uuid, enumAcceptReject);
                 return handler.GetResponse(request);
             }
             catch (Exception e)

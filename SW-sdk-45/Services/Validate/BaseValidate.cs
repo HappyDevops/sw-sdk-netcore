@@ -1,7 +1,4 @@
 ﻿using System;
-using SW.Helpers;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 
@@ -26,8 +23,8 @@ namespace SW.Services.Validate
                 var xmlBytes = Encoding.UTF8.GetBytes(XML);
                 var headers = GetHeaders();
                 var content = GetMultipartContent(xmlBytes);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = Helpers.RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("validate/cfdi33/",
                                 _operation), headers, content, proxy);
             }
@@ -43,8 +40,8 @@ namespace SW.Services.Validate
             {
                 var headers = GetHeaders();
                 var content = RequestValidarLco(Lco);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url,
+                var proxy = Helpers.RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url,
                                 headers,
                                 string.Format("lco/{0}", Lco),
                                 proxy);
@@ -62,8 +59,8 @@ namespace SW.Services.Validate
             {
                 var headers = GetHeaders();
                 var content = RequestValidarLrfc(Lrfc);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetResponse(this.Url,
+                var proxy = Helpers.RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetResponse(Url,
                                 headers,
                                 string.Format("lrfc/{0}", Lrfc),
                                 proxy

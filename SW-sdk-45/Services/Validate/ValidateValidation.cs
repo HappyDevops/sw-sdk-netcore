@@ -2,7 +2,6 @@
 using System.Text;
 using System.Xml;
 using System;
-using System.Text.RegularExpressions;
 using SW.Helpers;
 
 namespace SW.Services.Validate
@@ -16,12 +15,12 @@ namespace SW.Services.Validate
 
         public void ValidaXML(string XMLString)
         {
-            this._xmlString = XMLString;
+            _xmlString = XMLString;
             Validations();
         }
         internal void ValidaXML(byte[] xmlString)
         {
-            this._xmlString = Encoding.UTF8.GetString(xmlString);
+            _xmlString = Encoding.UTF8.GetString(xmlString);
             Validations();
         }
         private void Validations()

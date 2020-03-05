@@ -1,7 +1,5 @@
 ﻿using SW.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Text;
 
 namespace SW.Services.Stamp
@@ -26,8 +24,8 @@ namespace SW.Services.Stamp
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
                 var headers = GetHeaders();
                 var content = GetMultipartContent(xmlBytes);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("cfdi33/v2/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v1.ToString(),
@@ -48,8 +46,8 @@ namespace SW.Services.Stamp
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
                 var headers = GetHeaders();
                 var content = GetMultipartContent(xmlBytes);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("cfdi33/v2/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v2.ToString(),
@@ -69,8 +67,8 @@ namespace SW.Services.Stamp
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
                 var headers = GetHeaders();
                 var content = GetMultipartContent(xmlBytes);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("cfdi33/v2/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v3.ToString(),
@@ -90,8 +88,8 @@ namespace SW.Services.Stamp
                 var xmlBytes = Encoding.UTF8.GetBytes(xml);
                 var headers = GetHeaders();
                 var content = GetMultipartContent(xmlBytes);
-                var proxy = Helpers.RequestHelper.ProxySettings(this.Proxy, this.ProxyPort);
-                return handler.GetPostResponse(this.Url,
+                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                return handler.GetPostResponse(Url,
                                 string.Format("cfdi33/v2/{0}/{1}/{2}",
                                 _operation,
                                 StampTypes.v4.ToString(),

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Collections.Generic;
-using SW.Helpers;
 using SW.Services.Validate;
 using Test_SW.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
