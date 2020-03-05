@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 
 namespace SW.NetStandard20.Helpers.Extensions
 {
@@ -21,6 +19,24 @@ namespace SW.NetStandard20.Helpers.Extensions
            
             var webProxy = new WebProxy(host, port);
             request.Proxy = webProxy;
+            return request;
+        } 
+        
+        internal static HttpWebRequest AddAuthorizationHeader(this HttpWebRequest request, string token)
+        {
+            if (token == null) throw new ArgumentNullException(nameof(token));
+            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), $"bearer {token}");
+            return request;
+        }
+        
+        internal static HttpWebRequest PrepareForGETMethod(this HttpWebRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            request.ContentType = "application/json";
+            request.ContentLength = 0;
+            request.Method = WebRequestMethods.Http.Get;
+
             return request;
         }
     }
