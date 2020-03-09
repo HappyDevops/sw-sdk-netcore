@@ -1,10 +1,23 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using SW.NetStandard20.Services.Interfaces;
 
 namespace SW.NetStandard20.Services.Pendings
 {
     public class PendingsResponse : IResponseable
     {
+        public PendingsResponse()
+        {
+            
+        }
+
+        public PendingsResponse(Exception e)
+        {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
+            Message = e.Message;
+        }
+
         [DataMember(Name = "data")]
         public Data Data { get; set; }
 

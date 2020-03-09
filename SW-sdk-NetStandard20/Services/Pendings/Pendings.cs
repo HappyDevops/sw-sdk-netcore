@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using SW.NetStandard20.Exceptions;
 using SW.NetStandard20.Helpers.Extensions;
+using SW.NetStandard20.Services.Parameters;
 
 namespace SW.NetStandard20.Services.Pendings
 {
-    public sealed class Pending 
+    public sealed class Pendings 
     {
+        public ISWServiceCredentials Credentials { get; }
+        private const string GET_PENDINGS_SERVICE_PATH = "pendings/";
         private DateTime _expirationDate;
-        private int _timeSession = 2;
+        private const int _timeSession = 2;
 
-        public Pending(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxy, proxyPort)
+        public Pendings()
         {
+
         }
-        public Pending(string url, string token, int proxyPort = 0, string proxy = null) : base(url, token, proxy, proxyPort)
+
+        public Pendings(ISWServiceCredentials credentials)
         {
+            Credentials = credentials;
         }
 
         public string Token { get; private set; }
@@ -25,9 +32,8 @@ namespace SW.NetStandard20.Services.Pendings
         public int ProxyPort { get; }
         public DateTime ExpirationDate => _expirationDate;
 
-        internal PendingsResponse PendingsRequest(string rfc)
+        private PendingsResponse CreateHttpRequest(string rfc)
         {
-            
             var request = RequestPendings(rfc);
             try
             {
@@ -38,16 +44,20 @@ namespace SW.NetStandard20.Services.Pendings
                 
                 var headers = GetHeaders();
                 var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
-                return handler.GetResponse(Url, headers, $"pendings/{rfc}", proxy);
+                return handler.GetResponse(Url, headers, $"{GET_PENDINGS_SERVICE_PATH}{rfc}", proxy);
             }
             catch (Exception e)
             {
+                ExceptionHandler.HandleError(e, );
                 return new PendingsResponse(e);
             }
         }
+
+        private 
+
         public PendingsResponse PendingsByRfc(string rfc)
         {
-            return PendingsRequest(rfc);
+            return CreateHttpRequest(rfc);
         }
 
         internal Dictionary<string, string> GetHeaders()
@@ -65,16 +75,13 @@ namespace SW.NetStandard20.Services.Pendings
             SetupRequest();
             var path = $"pendings/{rfc}";
             var request = (HttpWebRequest)WebRequest.Create(Url + path);
-            request = request.prepa
-            request.ContentType = "application/json";
-            request.ContentLength = 0;
-            request.Method = WebRequestMethods.Http.Get;
-            request.Headers.Add(HttpRequestHeader.Authorization.ToString(), $"bearer {Token}");
-            Helpers.RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
+            request = request.PrepareForGETMethod();
+            request = request.AddAuthorizationHeader(Token);
+            request = request.AddProxyToRequest(Proxy,ProxyPort);
             return request;
         }
 
-        public Services SetupRequest()
+        public voi SetupRequest()
         {
             if (!string.IsNullOrEmpty(Token) && DateTime.Now <= ExpirationDate) return this;
 

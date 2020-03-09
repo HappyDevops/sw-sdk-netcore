@@ -2,7 +2,7 @@
 
 namespace SW.NetStandard20.Services.Parameters
 {
-    public class TokenServiceParameters
+    public class TokenServiceParameters : ISWServiceCredentials
     {
         public bool AreValid => !string.IsNullOrWhiteSpace(Token) && !string.IsNullOrWhiteSpace(EndPoint);
 

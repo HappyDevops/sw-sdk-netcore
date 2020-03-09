@@ -23,7 +23,7 @@ namespace SW.Helpers
             {
                 var httpClientHandler = new HttpClientHandler
                 {
-                    Proxy = new WebProxy(string.Format("{0}:{1}", proxy,proxyPort), false),
+                    Proxy = new WebProxy($"{proxy}:{proxyPort}", false),
                     UseProxy = true
                 };
                 return httpClientHandler;

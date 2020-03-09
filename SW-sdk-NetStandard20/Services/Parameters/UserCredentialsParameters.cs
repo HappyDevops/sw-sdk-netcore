@@ -2,12 +2,12 @@
 
 namespace SW.NetStandard20.Services.Parameters
 {
-    public class UserWebServiceParameters
+    public class UserCredentialsParameters
     {
         public bool AreValid => !string.IsNullOrWhiteSpace(EndPoint) && !string.IsNullOrWhiteSpace(User) &&
                                 !string.IsNullOrWhiteSpace(Password);
 
-        public UserWebServiceParameters()
+        public UserCredentialsParameters()
         {
             ProxySettings = new ProxySettings();
         }

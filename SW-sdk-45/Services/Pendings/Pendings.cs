@@ -64,7 +64,7 @@ namespace SW.Services.Pendings
             SetupRequest();
             var path = $"pendings/{rfc}";
             var request = (HttpWebRequest)WebRequest.Create(Url + path);
-            request = request.prepa
+            
             request.ContentType = "application/json";
             request.ContentLength = 0;
             request.Method = WebRequestMethods.Http.Get;

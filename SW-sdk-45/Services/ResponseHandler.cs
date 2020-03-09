@@ -159,7 +159,8 @@ namespace SW.Services
             }
             return cfdi;
         }
-        internal virtual bool Has307AndAddenda(Response response, Stamp.Data_CFDI data)
+
+        private protected virtual bool Has307AndAddenda(Response response, Stamp.Data_CFDI data)
         {
             try
             {
@@ -175,7 +176,8 @@ namespace SW.Services
             }
             return false;
         }
-        internal virtual bool Has307AndAddenda(Response response, Stamp.Data_CFDI_TFD data)
+
+        private protected virtual bool Has307AndAddenda(Response response, Stamp.Data_CFDI_TFD data)
         {
             try
             {
