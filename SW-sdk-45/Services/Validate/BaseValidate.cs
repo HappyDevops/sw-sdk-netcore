@@ -6,6 +6,13 @@ namespace SW.Services.Validate
 {
     public abstract class BaseValidate : ValidateService
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+        
         private string _operation;
         public BaseValidate(string url, string user, string password, string operation, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {

@@ -12,6 +12,6 @@ namespace SW.NetStandard20.Config
                 UseGlobalProxySettings = false,
                 GlobalProxySettings = ProxySettings.GetEmptySettings()
             };
+        }
     }
-
 }

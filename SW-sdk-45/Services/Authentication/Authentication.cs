@@ -5,6 +5,13 @@ namespace SW.Services.Authentication
 {
     public class Authentication : AuthenticationService
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+       
         readonly AuthenticationResponseHandler _handler;
         public Authentication(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxy, proxyPort)
         {

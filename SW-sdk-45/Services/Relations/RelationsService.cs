@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -7,6 +8,13 @@ namespace SW.Services.Relations
 {
     public abstract class RelationsService : Services
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+        
         protected RelationsService(string url, string user, string password, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {
         }
@@ -26,6 +34,12 @@ namespace SW.Services.Relations
                 };
             return headers;
         }
+
+        private void SetupRequest()
+        {
+            throw new NotImplementedException();
+        }
+
         internal virtual StringContent RequestRelations(string cer, string key, string rfc, string password, string uuid)
         {
             var body = Newtonsoft.Json.JsonConvert.SerializeObject(new RelationsRequestCSD

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
@@ -6,6 +7,13 @@ namespace SW.Services.Issue
 {
     public abstract class IssueService : Services
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+       
         protected IssueService(string url, string user, string password, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {
         }
@@ -29,6 +37,12 @@ namespace SW.Services.Issue
             }
             return request;
         }
+
+        private void SetupRequest()
+        {
+            throw new System.NotImplementedException();
+        }
+
         internal virtual Dictionary<string, string> GetHeaders()
         {
             SetupRequest();

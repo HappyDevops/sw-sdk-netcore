@@ -7,8 +7,9 @@ using SW.NetStandard20.Services.Parameters;
 
 namespace SW.NetStandard20.Services.Pendings
 {
-    public sealed class Pendings 
+    public sealed class Pendings
     {
+        private const ErrorHandlePolicy ERROR_HANDLE_POLICY = ErrorHandlePolicy.Pendings;
         public ISWServiceCredentials Credentials { get; }
         private const string GET_PENDINGS_SERVICE_PATH = "pendings/";
         private DateTime _expirationDate;
@@ -39,21 +40,22 @@ namespace SW.NetStandard20.Services.Pendings
             {
                 request = request.PrepareForGETMethod();
                 request = request.AddProxyToRequest("", 0);
-                request = request.AddAuthorizationHeader(null);
+                request = request.AddAuthorizationHeader("");
 
                 
                 var headers = GetHeaders();
-                var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
-                return handler.GetResponse(Url, headers, $"{GET_PENDINGS_SERVICE_PATH}{rfc}", proxy);
+                throw  new NotImplementedException();
+                //var proxy = RequestHelper.ProxySettings(Proxy, ProxyPort);
+                //return handler.GetResponse(Url, headers, $"{GET_PENDINGS_SERVICE_PATH}{rfc}", proxy);
             }
             catch (Exception e)
             {
-                ExceptionHandler.HandleError(e, );
+                ExceptionHandler.HandleError(e, ERROR_HANDLE_POLICY);
                 return new PendingsResponse(e);
             }
         }
 
-        private 
+ 
 
         public PendingsResponse PendingsByRfc(string rfc)
         {
@@ -81,18 +83,18 @@ namespace SW.NetStandard20.Services.Pendings
             return request;
         }
 
-        public voi SetupRequest()
+        public void SetupRequest()
         {
-            if (!string.IsNullOrEmpty(Token) && DateTime.Now <= ExpirationDate) return this;
+            //if (!string.IsNullOrEmpty(Token) && DateTime.Now <= ExpirationDate) return this;
 
-            var auth = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
-            var response = auth.GetToken();
+            //var auth = new Authentication.Authentication(Url, User, Password, ProxyPort, Proxy);
+            //var response = auth.GetToken();
 
-            if (response.status != ResponseType.success.ToString()) return this;
+            //if (response.status != ResponseType.success.ToString()) return this;
 
-            Token = response.data.token;
-            _expirationDate = DateTime.Now.AddHours(_timeSession);
-            return this;
+            //Token = response.data.token;
+            //_expirationDate = DateTime.Now.AddHours(_timeSession);
+            //return this;
         }
     }
 }

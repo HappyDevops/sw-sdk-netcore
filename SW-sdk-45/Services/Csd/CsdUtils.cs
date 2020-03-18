@@ -5,6 +5,14 @@ namespace SW.Services.Csd
 {
     public class CsdUtils : CsdService
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+        
+
         CsdResponseHandler _handler;
         public CsdUtils(string url, string user, string password, int proxyPort = 0, string proxy = null) : base(url, user, password, proxy, proxyPort)
         {

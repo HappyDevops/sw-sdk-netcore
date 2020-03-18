@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
@@ -6,6 +7,13 @@ namespace SW.Services.Csd
 {
     public abstract class CsdService : Services
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+        
         protected CsdService(string url, string user, string password, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {
         }
@@ -28,6 +36,12 @@ namespace SW.Services.Csd
                 };
             return headers;
         }
+
+        private void SetupRequest()
+        {
+            throw new NotImplementedException();
+        }
+
         internal virtual StringContent RequestCsd(string cer, string key, string password, string certificateType, bool isActive)
         {
             SetupRequest();

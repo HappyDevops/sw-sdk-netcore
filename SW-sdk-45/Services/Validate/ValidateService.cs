@@ -6,6 +6,13 @@ namespace SW.Services.Validate
 {
     public abstract class ValidateService : Services
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+      
         protected ValidateService(string url, string user, string password, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {
         }
@@ -28,6 +35,12 @@ namespace SW.Services.Validate
                 };
             return headers;
         }
+
+        private void SetupRequest()
+        {
+            throw new System.NotImplementedException();
+        }
+
         internal virtual HttpWebRequest RequestValidarLrfc(string lrfc)
         {
             SetupRequest();

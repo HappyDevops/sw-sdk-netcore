@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using SW.NetStandard20.Config;
@@ -10,8 +11,10 @@ using SW.NetStandard20.Helpers.Extensions;
 using SW.NetStandard20.Services.Parameters;
 using SW.NetStandard20.Services.Responses;
 
+[assembly: InternalsVisibleTo("SW-sdk-NetStandard20.UnitTests")]
 namespace SW.NetStandard20.Services.Authentication
 {
+
     public class Authentication
     {
         private const string GET_TOKEN_SERVICE_PATH = "security/authenticate";
@@ -33,6 +36,17 @@ namespace SW.NetStandard20.Services.Authentication
             ProxySettings = parameters.ProxySettings;
         }
 
+        internal Authentication(TokenServiceParameters parameters, GlobalConfiguration configuration)
+        {
+            ArgsCheck.IsNotNull(parameters);
+            ArgsCheck.IsNotNullOrEmptyOrWhiteSpace(nameof(parameters.Token), parameters.Token);
+            ArgsCheck.IsNotNull(configuration);
+
+            InfiniteToken = parameters.Token;
+            GlobalConfiguration = configuration;
+            ProxySettings = parameters.ProxySettings;
+        }
+
         public Authentication(UserCredentialsParameters parameters)
         {
             ArgsCheck.IsNotNull(parameters);
@@ -41,6 +55,16 @@ namespace SW.NetStandard20.Services.Authentication
             Parameters = parameters;
             ProxySettings = parameters.ProxySettings;
             GlobalConfiguration = UtilsGlobalConfiguration.GetConfiguration();
+        } 
+        internal Authentication(UserCredentialsParameters parameters, GlobalConfiguration configuration)
+        {
+            ArgsCheck.IsNotNull(parameters);
+            ArgsCheck.IsNotNull(configuration);
+
+            InfiniteToken = null;
+            Parameters = parameters;
+            ProxySettings = parameters.ProxySettings;
+            GlobalConfiguration = configuration;
         }
 
         private HttpClient GetHttpClient()

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 
@@ -6,6 +7,14 @@ namespace SW.Services.Pdf
 {
     public abstract class PdfService : Services
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+      
+
         protected PdfService(string url, string user, string password, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {
         }
@@ -29,6 +38,11 @@ namespace SW.Services.Pdf
                     { "Authorization", "bearer " + Token }
                 };
             return headers;
+        }
+
+        private void SetupRequest()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

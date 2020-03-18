@@ -1,4 +1,5 @@
-﻿using SW.Helpers;
+﻿using System;
+using SW.Helpers;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -8,6 +9,13 @@ namespace SW.Services.AcceptReject
 {
     public abstract class AcceptRejectService : Services
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+        
         protected AcceptRejectService(string url, string user, string password, string proxy, int proxyPort) : base(url, user, password, proxy, proxyPort)
         {
         }
@@ -70,6 +78,11 @@ namespace SW.Services.AcceptReject
             request.Headers.Add(HttpRequestHeader.Authorization.ToString(), "bearer " + Token);
             RequestHelper.SetupProxy(Proxy, ProxyPort, ref request);
             return request;
+        }
+
+        private void SetupRequest()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

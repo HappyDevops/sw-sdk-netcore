@@ -6,6 +6,14 @@ namespace SW.Services.Cancelation
 {
     public class Cancelation : CancelationService
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+        
+
         /// <summary>
         /// This Service is Not Implemented
         /// </summary>

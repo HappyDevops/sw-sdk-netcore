@@ -6,6 +6,13 @@ namespace SW.Services.Pdf
 {
     public abstract class BasePdf : PdfService
     {
+        public string Token { get; private set; }
+        public string Url { get; }
+        public string User { get; }
+        public string Password { get; }
+        public string Proxy { get; }
+        public int ProxyPort { get; }
+       
         private string _operation;
         public BasePdf(string url, string token, string operation, string proxy, int proxyPort) : base(url, token, proxy, proxyPort)
         {
